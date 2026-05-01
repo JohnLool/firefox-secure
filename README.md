@@ -69,13 +69,13 @@ Edit `~/.local/share/applications/firefox.desktop` and replace the `Exec=` lines
 
 ```ini
 [Desktop Entry]
-Exec=/path/to/firefox-secure %u
+Exec=/home/YOUR_NAME/.local/bin/firefox-secure %U
 
 [Desktop Action new-window]
-Exec=/path/to/firefox-secure --new-window
+Exec=/home/YOUR_NAME/.local/bin/firefox-secure --new-window %U
 
 [Desktop Action new-private-window]
-Exec=firefox --private-window %u
+Exec=/home/YOUR_NAME/.local/bin/firefox-secure --private-window %U
 ```
 
 > Private window is launched directly via Firefox since the vault is already mounted at that point.
