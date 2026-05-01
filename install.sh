@@ -6,7 +6,7 @@
 
 set -e
 
-REPO="https://raw.githubusercontent.com/yourusername/firefox-secure/main"
+REPO="https://raw.githubusercontent.com/JohnLool/firefox-secure/main"
 INSTALL_DIR="$HOME/.local/bin/firefox-secure"
 
 echo ""
