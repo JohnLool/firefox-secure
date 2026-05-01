@@ -7,7 +7,8 @@
 set -e
 
 REPO="https://raw.githubusercontent.com/JohnLool/firefox-secure/main"
-INSTALL_DIR="$HOME/.local/bin/firefox-secure"
+INSTALL_DIR="$HOME/.local/share/firefox-secure"
+BIN_LINK="$HOME/.local/bin/firefox-secure"
 
 echo ""
 echo "=== firefox-secure installer ==="
@@ -116,7 +117,7 @@ else
     echo "     PATH already includes ~/.local/bin"
 fi
 
-ln -sfn "$INSTALL_DIR/firefox-secure.sh" "$HOME/.local/bin/firefox-secure"
+ln -sfn "$INSTALL_DIR/firefox-secure.sh" "$BIN_LINK"
 
 # --- Run setup ---
 
