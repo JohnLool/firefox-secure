@@ -64,7 +64,7 @@ echo "     rm -rf $BACKUP_DIR"
 echo ""
 read -p "     Create backup? (yes/no): " DO_BACKUP
 if [ "$DO_BACKUP" = "yes" ]; then
-    cp -r "$FIREFOX_DIR/$PROFILE_NAME" "$BACKUP_DIR"
+    cp -r "$FIREFOX_DIR/$PROFILE_NAME" "$BACKUP_DIR/"
     echo "     Backup created at $BACKUP_DIR"
 else
     echo "     Skipping backup. Proceed at your own risk."
