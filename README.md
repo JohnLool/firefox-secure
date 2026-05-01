@@ -9,10 +9,11 @@ Protects against infostealers and other malware that reads from disk while the b
 ## Install
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/yourusername/firefox-secure/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/JohnLool/firefox-secure/main/install.sh)
 ```
 
-Detects your distro, installs dependencies, downloads scripts, and runs interactive setup. Tested on Arch, Debian/Ubuntu, Fedora.
+Detects your distro, installs dependencies, downloads scripts, and runs interactive setup. 
+Supported: Arch, Debian/Ubuntu, Fedora.
 
 ---
 
@@ -172,7 +173,6 @@ chmod +x firefox-secure.sh
 
 - Performance overhead is negligible on CPUs with AES-NI (virtually all x86 CPUs since ~2010)
 - Browser cache is cleared on session close (`~/.cache/mozilla/firefox/PROFILE/`)
-- Tested on Arch Linux with GNOME and Hyprland
 
 ---
 
