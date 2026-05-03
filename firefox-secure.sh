@@ -2,7 +2,7 @@
 #
 # firefox-secure.sh
 # Encrypts your Firefox profile with gocryptfs and mounts it only during the session.
-# https://github.com/yourusername/firefox-secure
+# https://github.com/JohnLool/firefox-secure
 #
 # BEFORE USE
 #
