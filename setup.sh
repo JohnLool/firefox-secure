@@ -135,7 +135,7 @@ fi
 BIN_LINK="$HOME/.local/bin/firefox-secure"
 DESKTOP_SRC="/usr/share/applications/firefox.desktop"
 DESKTOP_DST="$HOME/.local/share/applications/firefox.desktop"
-
+ 
 echo ""
 read -p "Replace Firefox desktop launcher to use firefox-secure? (yes/no): " DO_DESKTOP
 if [ "$DO_DESKTOP" = "yes" ]; then
@@ -145,7 +145,7 @@ if [ "$DO_DESKTOP" = "yes" ]; then
         mkdir -p "$HOME/.local/share/applications"
         cp "$DESKTOP_SRC" "$DESKTOP_DST"
         # Replace Exec= lines, preserve any arguments like %u
-        sed -i -E "s|^Exec=(/usr(/local)?/bin/)?firefox([[:space:]]*.*)$|Exec=$BIN_LINK\3|g" "$DESKTOP_DST"
+        sed -i -E "s|^Exec=[^ ]*firefox([[:space:]]*.*)$|Exec=$BIN_LINK\1|g" "$DESKTOP_DST"
         # Update desktop database
         if command -v update-desktop-database &>/dev/null; then
             update-desktop-database "$HOME/.local/share/applications"
@@ -155,11 +155,9 @@ if [ "$DO_DESKTOP" = "yes" ]; then
 else
     echo "     Skipping. You can do it manually — see README."
 fi
-
+ 
 echo ""
 echo "=== Setup complete ==="
-echo ""
-echo "Run firefox-secure.sh instead of Firefox from now on."
 echo ""
 echo "When you've verified everything works correctly, delete the backup:"
 echo "  rm -rf $BACKUP_DIR"
