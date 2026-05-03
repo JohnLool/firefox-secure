@@ -2,7 +2,7 @@
 #
 # firefox-secure.sh
 # Encrypts your Firefox profile with gocryptfs and mounts it only during the session.
-# https://github.com/JohnLool/firefox-secure
+# https://github.com/yourusername/firefox-secure
 #
 # BEFORE USE
 #
@@ -50,7 +50,7 @@ fi
 # --- If vault already mounted, Firefox is running — just open new window ---
 
 if mountpoint -q "$MOUNT_POINT"; then
-    firefox --new-window
+    firefox "$@"
     exit 0
 fi
 
@@ -102,7 +102,7 @@ ln -sfn "$MOUNT_POINT/$PROFILE_NAME" "$LINK_PATH"
 
 # --- Launch ---
 
-firefox --no-remote
+firefox --no-remote "$@"
 
 # --- Wait for Firefox to release mount, then clean up ---
 
