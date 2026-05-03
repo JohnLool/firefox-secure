@@ -64,8 +64,7 @@ echo "     rm -rf $BACKUP_DIR"
 echo ""
 read -p "     Create backup? (yes/no): " DO_BACKUP
 if [ "$DO_BACKUP" = "yes" ]; then
-    mkdir -p "$BACKUP_DIR"
-    cp -a "$FIREFOX_DIR/$PROFILE_NAME" "$BACKUP_DIR/$(basename "$PROFILE_NAME")"
+    cp -r "$FIREFOX_DIR/$PROFILE_NAME" "$BACKUP_DIR"
     echo "     Backup created at $BACKUP_DIR"
 else
     echo "     Skipping backup. Proceed at your own risk."
@@ -128,6 +127,32 @@ if [ -f "$SCRIPT" ]; then
     chmod +x "$SCRIPT"
     echo ""
     echo "     PROFILE_NAME set in firefox-secure.sh automatically."
+fi
+
+
+# Replace Firefox desktop launcher
+BIN_LINK="$HOME/.local/bin/firefox-secure"
+DESKTOP_SRC="/usr/share/applications/firefox.desktop"
+DESKTOP_DST="$HOME/.local/share/applications/firefox.desktop"
+
+echo ""
+read -p "Replace Firefox desktop launcher to use firefox-secure? (yes/no): " DO_DESKTOP
+if [ "$DO_DESKTOP" = "yes" ]; then
+    if [ ! -f "$DESKTOP_SRC" ]; then
+        echo "     firefox.desktop not found at $DESKTOP_SRC, skipping."
+    else
+        mkdir -p "$HOME/.local/share/applications"
+        cp "$DESKTOP_SRC" "$DESKTOP_DST"
+        # Replace Exec= lines, preserve any arguments like %u
+        sed -i -E "s|^Exec=(/usr(/local)?/bin/)?firefox([[:space:]]*.*)$|Exec=$BIN_LINK\3|g" "$DESKTOP_DST"
+        # Update desktop database
+        if command -v update-desktop-database &>/dev/null; then
+            update-desktop-database "$HOME/.local/share/applications"
+        fi
+        echo "     Desktop launcher updated: $DESKTOP_DST"
+    fi
+else
+    echo "     Skipping. You can do it manually — see README."
 fi
 
 echo ""
